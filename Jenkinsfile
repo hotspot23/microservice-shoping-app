@@ -14,7 +14,7 @@ pipeline {
                 timeout(time: 60, unit: 'SECONDS') {
                     script {
                         try {
-                            sh 'docker-compose up -d'
+                            sh 'docker compose up -d'
                             waitUntil {
                                 def r = sh script: 'curl -s http://localhost:8010/health | grep "UP"', returnStatus: true
                                 return (r == 0)
@@ -23,7 +23,7 @@ pipeline {
                             // Run the main end-to-end tests
                             sh 'cd functional-e2e-tests && mvn clean verify'
                         } finally {
-                            sh 'docker-compose stop'
+                            sh 'docker compose stop'
                         }
                     }
                 }
