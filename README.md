@@ -43,7 +43,7 @@ Once the Jenkins instance has been built and configured as specified in the acco
 ```
 node {
     stage ('Successful startup check') {
-        docker.image('danielbryantuk/djshopfront').withRun('-p 8010:8010') {
+        docker.image('shegerbootcamp/djshopfront').withRun('-p 8010:8010') {
             timeout(time: 30, unit: 'SECONDS') {
                 waitUntil {
                     def r = sh script: 'curl -s http://localhost:8010/health | grep "UP"', returnStatus: true
@@ -60,7 +60,7 @@ node {
 ```
 node {
     stage ('build') {
-        git url: 'https://github.com/danielbryantuk/oreilly-docker-java-shopping.git'
+        git url: 'https://github.com/shegerbootcamp/microservice-shoping-app.git'
         // conduct other build tasks
     }
 
@@ -92,7 +92,7 @@ node {
 ```
 node {
     stage ('build') {
-        git url: 'https://github.com/danielbryantuk/oreilly-docker-java-shopping.git'
+        git url: 'https://github.com/shegerbootcamp/microservice-shoping-app.git'
         // conduct other build tasks
     }
 
